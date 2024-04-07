@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>测试使用</title>
+    <url>/wurongji1/2019/03/10/C++STL/</url>
+    <content><![CDATA[<center>**测试3**</center>
+ 
+ 
+<br>
+ 
+ 
+<div class="pdfobject-container" data-target="C++STL.pdf" data-height="500px"></div> 
+</br>
+]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+      <tags>
+        <tag>测试2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>TD1-20E错误分析.md</title>
+    <url>/wurongji1/2024/04/07/TD1-20E%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>结论 ：   多开了1个线程   即  std::thread(&amp;SaScheduler::__ModuleStart, this).detach();  存在两个即以上<br>问题分析：<br>1 日志  看出  函数 __AdvanceForward（）  正在等待下位机返回setled（1,1）的结果，等待期间任然看到这个函数的日志被打印   ：所以可以得出 多个线程调用的结论。</p>
+<p>2  代码分析  ：<br>存在一种情况<br>ModuleInit （） 时<br>if (m_thread_count !&#x3D; 0) { 线程没有被关闭<br>        __SetCMD(SA_NUL);<br>        _SetModuleStatus(STOP, false);  （线程退出条件）<br>        m_thread_count &#x3D;0;<br>    }<br>因为  线程是异步的：可能发生一种现象      先执行语句：m_thread_count &#x3D;0;   之后 线程  执行 语句：m_thread_count–（-1）;<br>后创建线程 执行 m_thread_count++（0）；<br>即 m_thread_count &#x3D;&#x3D; 0 时，存在一个线程，后续初始化增加一个线程  。同时存在两个线程，导致各种错误</p>
+<p>代码修改：报错，重新初始化</p>
+<p>测试<br>ut测试<br>点击  Options  -&gt;configure system -&gt;THresholds -&gt;CREA -&gt;Diluents -&gt;配置如图所示<br>放入新的样本架<br>samples  CREA  02  1,2,3,4,5,   如图所示<br>点击采样开始启动<br>查看日志： </p>
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/wurongji1/2024/03/26/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
